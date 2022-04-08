@@ -1,0 +1,42 @@
+table {
+  margin: 2rem auto;
+}
+
+table a {
+  color: red;
+  text-decoration: none;
+}
+
+body {
+  text-align: center;
+  margin: 2rem;
+}
+
+a:link {
+  color: red;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:visited {
+  color: red;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:hover {
+  color: red;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+a:active {
+  color: red;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+
+.bold {
+  font-weight: bolder;
+}

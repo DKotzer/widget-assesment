@@ -1,0 +1,22 @@
+{% extends "base.html"%} {% block content %}
+
+<h1>Widget List</h1>
+{% if widget_list|length == 0 %}
+<h3>No Widgets Exists</h3>
+<hr />
+
+{% endif %} {% for widget in widget_list%}
+
+<div class="card">
+  <div class="card-content">
+    <span>{{widget.description}}</span>
+    <p>Color: {{widget.quantity}}</p>
+  </div>
+</div>
+
+<form action="/widgets/" method="post">
+  {% csrf_token %} {{ form }}
+  <input type="submit" value="Submit" />
+</form>
+
+{%endfor%} {% endblock %}

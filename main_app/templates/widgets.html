@@ -1,22 +1,77 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
+        <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/style.css' %}"
+    />
     <title>Wacky Widgets</title>
   </head>
   <body>
-    <h1>Wacky Widgets</h1>
 
-    {% if widget_list|length == 0 %}
-    <h3>No Widgets Exists</h3>
-    <hr />
-    {% else %} {% endif %}
+    <div class="content-wrapper">
+        <h1>Wacky Widgets</h1>
 
-    <form action="{% url 'add_widget' %}" method="post">
-      {%csrf_token%} {{ widget_form.as_p}}
-      <input type="submit" class="btn" value="Add Widget" />
-    </form>
+
+        
+        {% if widget_list|length == 0 %}
+        <h3>No Widgets Exists</h3>
+        
+        {% else %} 
+        
+        <h3> Add Widget </h3>
+        
+        <table class="pure-table-striped pure-table">
+        <thead>
+        <tr>
+            <th>Description</th>
+            <th>Quantity</th>
+            <th>Delete</th>
+        {% for widget in widget_list%}
+            <tr>
+            <td>{{widget.description}}</td>
+            <td>
+            {{widget.quantity}}
+            </td>
+            <td class="delete"> <a href="{% url 'widgets_delete' widget.id %}">X</a> </td>
+        
+        </tr>
+        
+            {%endfor%}
+        <tr><td class="bold">Total Quantity:</td>
+        <td class="bold">{{total}}</td>
+        <td></td>
+        </tr>
+
+        {% endif %}
+        <hr />
+        <form
+        class="pure-form"
+        action="{% url 'add_widget' %}"
+        method="post"
+        id="widgetForm"
+        >
+        {%csrf_token %}
+        <input type="text" name="description" placeholder="description" />
+        <br>
+        <input
+            type="number"
+            name="quantity"
+            placeholder="quantity"
+        />
+
+        <div>
+            <button class=" pure-button" type="submit">Add Widget</button>
+        </div>
+        </form>
+    </div>
+
   </body>
 </html>
